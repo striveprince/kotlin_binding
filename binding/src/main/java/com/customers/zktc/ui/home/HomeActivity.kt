@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.customers.zktc.R
+import com.customers.zktc.base.life.AnkoActivity
 import com.google.android.material.tabs.TabLayout.MODE_FIXED
 import com.lifecycle.binding.inter.anko.AnkoParse
 import com.lifecycle.binding.util.bottomNavigationView
@@ -13,12 +14,12 @@ import com.lifecycle.binding.util.observer
 import com.lifecycle.binding.util.tabLayout
 import org.jetbrains.anko.*
 /**
- * Company: 中科同创
+ * Company:
  * Description:
  * Author: created by ArvinWang on 2019/11/15 9:51
  * Email: 1033144294@qq.com
  */
-class HomeActivity : AppCompatActivity(), AnkoParse<HomeModel, AnkoContext<Context>> {
+class HomeActivity : AnkoActivity<HomeModel>() {
     private var beforeIndex = -1
     private val demoModel: HomeModel by lazy{ ViewModelProviders.of(this)[HomeModel::class.java] }
     private val homeEntities = ArrayList<HomeEntity>()
@@ -30,25 +31,23 @@ class HomeActivity : AppCompatActivity(), AnkoParse<HomeModel, AnkoContext<Conte
         demoModel.currentIndex.observer(this){ checkFragment(it) }
     }
 
-    fun context(): AppCompatActivity = this
 
     override fun parse(t: HomeModel, context: Context): AnkoContext<Context> {
         return AnkoContext.create(this).apply {
             verticalLayout {
                 frameLayout { id = R.id.home_frame_layout }
                     .lparams(matchParent, wrapContent, 1f)
-                tabLayout {
-                    orientation = LinearLayout.HORIZONTAL
-                    tabMode = MODE_FIXED
-                    for (homeEntity in homeEntities) addTab(homeEntity.tab())
-                    addOnTabSelectedListener(demoModel)
-                }.lparams(matchParent, dip(50))
+//                tabLayout {
+//                    orientation = LinearLayout.HORIZONTAL
+//                    tabMode = MODE_FIXED
+//                    for (homeEntity in homeEntities) addTab(homeEntity.tab())
+//                    addOnTabSelectedListener(demoModel)
+//                }.lparams(matchParent, dip(50))
                 bottomNavigationView{
 //                    itemTextColor =
 //                    ColorStateList
                     itemIconTintList = resources.getColorStateList(R.color.tab_color)
                     inflateMenu(R.menu.home_tab)
-
                 }.lparams(matchParent,dip(50))
             }
         }

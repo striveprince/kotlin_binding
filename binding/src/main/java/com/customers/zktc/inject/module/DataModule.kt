@@ -2,6 +2,8 @@ package com.customers.zktc.inject.module
 
 import android.content.Context
 import com.customers.zktc.BuildConfig
+import com.customers.zktc.inject.component.ActivityComponent
+import com.customers.zktc.inject.component.FragmentComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.data.database.DatabaseApi
 import com.customers.zktc.inject.data.map.MapApi
@@ -22,7 +24,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
 
-@Module
+@Module(subcomponents = [ActivityComponent::class,FragmentComponent::class])
 class DataModule {
 
     @Provides

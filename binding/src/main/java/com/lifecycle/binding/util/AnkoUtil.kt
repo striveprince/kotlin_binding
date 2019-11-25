@@ -6,7 +6,7 @@ import com.google.android.material.tabs.TabLayout
 import org.jetbrains.anko.custom.ankoView
 
 /**
- * Company: 中科同创
+ * Company:
  * Description:
  * Author: created by ArvinWang on 2019/11/15 14:35
  * Email: 1033144294@qq.com

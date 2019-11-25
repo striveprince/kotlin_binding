@@ -9,7 +9,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * Company: 中科同创
+ * Company:
  * Description:
  * Author: created by WangKeZe on 2019/9/30 12:33
  * Email: wkz0917@163.com

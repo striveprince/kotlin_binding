@@ -3,7 +3,7 @@ package com.customers.zktc.inject.data.net.exception
 import java.lang.RuntimeException
 
 /**
- * Company: 中科同创
+ * Company:
  * Description:
  * Author: created by ArvinWang on 2019/10/9 17:20
  * Email: 1033144294@qq.com

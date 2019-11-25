@@ -8,6 +8,7 @@ import java.nio.charset.Charset
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okio.Buffer
 import retrofit2.Converter
 import java.lang.reflect.Type
@@ -44,7 +45,7 @@ class JsonRequestBodyConverter<T> internal constructor(gson: Gson, type: Type) :
         val writer = OutputStreamWriter(buffer.outputStream(), UTF_8)
         writer.use {
             adapter.toJson(writer, value)
-            return RequestBody.create(MEDIA_TYPE, buffer.readByteString())
+            return buffer.readByteString().toRequestBody(MEDIA_TYPE)
         }
     }
 

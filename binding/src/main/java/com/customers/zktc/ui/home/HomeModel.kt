@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.tabs.TabLayout
 
 /**
- * Company: 中科同创
+ * Company:
  * Description:
  * Author: created by ArvinWang on 2019/11/15 10:23
  * Email: 1033144294@qq.com

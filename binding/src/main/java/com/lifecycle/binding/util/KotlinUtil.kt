@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 
 /**
- * Company: 中科同创
+ * Company:
  * Description:
  * Author: created by ArvinWang on 2019/11/14 18:04
  * Email: 1033144294@qq.com

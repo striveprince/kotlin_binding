@@ -13,7 +13,9 @@ import dagger.Component
 @ApplicationScope
 interface AppComponent {
     fun inject(application: ZktcApplication)
-    @AppContext
-    fun getContext():Context
+    @AppContext fun getContext():Context
     fun getApi(): Api
+
+    fun buildActivityComponent():ActivityComponent.Builder
+    fun buildFragmentComponent():FragmentComponent.Builder
 }
