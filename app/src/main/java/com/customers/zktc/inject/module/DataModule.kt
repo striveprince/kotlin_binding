@@ -15,7 +15,6 @@ import com.customers.zktc.inject.data.preference.PreferenceApi
 import com.customers.zktc.inject.interceptor.NetInterceptor
 import com.customers.zktc.inject.qualifier.AppContext
 import com.customers.zktc.inject.scope.ApplicationScope
-import com.lifecycle.binding.App
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -35,8 +34,7 @@ class DataModule {
             .addInterceptor(netInterceptor)
             .build()
         return Retrofit.Builder()
-//            .baseUrl(BuildConfig.ApiHost)
-            .baseUrl("")
+            .baseUrl(BuildConfig.ApiHost)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addConverterFactory(JsonConverterFactory())
             .callFactory(client)

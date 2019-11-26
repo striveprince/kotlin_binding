@@ -3,6 +3,7 @@ package com.customers.zktc.inject.data.oss
 import android.content.Context
 import com.alibaba.sdk.android.oss.ClientConfiguration
 import com.alibaba.sdk.android.oss.OSSClient
+import com.customers.zktc.BuildConfig
 import com.customers.zktc.inject.data.net.HttpApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,6 @@ class OssApi(context: Context, httpApi: HttpApi) {
         conf.socketTimeout = 15 * 1000
         conf.maxConcurrentRequest = 5
         conf.maxErrorRetry = 2
-        return OSSClient(context, "", credentialProvider1, conf)
-//        return OSSClient(context, BuildConfig.endpoint, credentialProvider1, conf)
+        return OSSClient(context, BuildConfig.endpoint, credentialProvider1, conf)
     }
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import com.alibaba.android.arouter.launcher.ARouter
 import com.customers.zktc.inject.component.FragmentComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.FragmentModule
@@ -21,6 +22,7 @@ abstract class BaseFragment<Model:ViewModel>():Fragment(),Parse<Model,Api> {
     lateinit var model: Model
     @Inject lateinit var api: Api
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        ARouter.getInstance().inject(this)
         inject(TomtawApplication.application.fragmentBuilder,savedInstanceState)
         val view = createView(model,context!!)
         initData(api,this,savedInstanceState)

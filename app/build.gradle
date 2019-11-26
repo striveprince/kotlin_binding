@@ -35,12 +35,15 @@ android {
             applicationIdSuffix ".debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            multiDexEnabled = true
+            buildConfigField "String", "ApiHost", "\"http://dev.zhongketongchuang.com\""
+            buildConfigField "String", "endpoint", "\"http://oss-cn-hangzhou.aliyuncs.com\""
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "ApiHost", "\"http://dev.zhongketongchuang.com\""
+            buildConfigField "String", "endpoint", "\"http://oss-cn-hangzhou.aliyuncs.com\""
         }
     }
     androidExtensions {

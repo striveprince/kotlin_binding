@@ -27,10 +27,11 @@ class TomtawApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        val context = this
         CoroutineScope(Dispatchers.Default).launch {
             DaggerAppComponent.builder()
-                .appModule(AppModule(application))
-                .build().inject(application)
+                .appModule(AppModule(context))
+                .build().inject(context)
             application = this@TomtawApplication
             TomtawApplication.activityBuilder = activityBuilder
             busPost(activityBuilder)

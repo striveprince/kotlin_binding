@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import com.alibaba.android.arouter.launcher.ARouter
 import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.ActivityModule
+import com.customers.zktc.ui.ARouterUtil
 import com.customers.zktc.ui.TomtawApplication
 import com.lifecycle.binding.inter.Parse
 import javax.inject.Inject
@@ -21,6 +23,7 @@ abstract class BaseActivity<Model : ViewModel> : AppCompatActivity(), Parse<Mode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
         setContentView(inject(TomtawApplication.activityBuilder,savedInstanceState))
     }
 
