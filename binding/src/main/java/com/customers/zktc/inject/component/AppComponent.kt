@@ -6,13 +6,13 @@ import com.customers.zktc.inject.module.AppModule
 import com.customers.zktc.inject.module.DataModule
 import com.customers.zktc.inject.qualifier.AppContext
 import com.customers.zktc.inject.scope.ApplicationScope
-import com.customers.zktc.ui.ZktcApplication
+import com.customers.zktc.ui.DemoApplication
 import dagger.Component
 
 @Component(modules = [AppModule::class,DataModule::class])
 @ApplicationScope
 interface AppComponent {
-    fun inject(application: ZktcApplication)
+    fun inject(application: DemoApplication)
     @AppContext fun getContext():Context
     fun getApi(): Api
 

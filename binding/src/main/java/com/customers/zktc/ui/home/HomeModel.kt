@@ -1,7 +1,7 @@
 package com.customers.zktc.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.customers.zktc.base.life.BaseViewModel
 import com.google.android.material.tabs.TabLayout
 
 /**
@@ -10,11 +10,9 @@ import com.google.android.material.tabs.TabLayout
  * Author: created by ArvinWang on 2019/11/15 10:23
  * Email: 1033144294@qq.com
  */
-class HomeModel : ViewModel() , TabLayout.OnTabSelectedListener{
+class HomeModel : BaseViewModel<HomeActivity>() , TabLayout.OnTabSelectedListener{
 
     val currentIndex = MutableLiveData(-1)
-
-
     override fun onTabReselected(p0: TabLayout.Tab?) {
 
     }

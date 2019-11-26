@@ -1,10 +1,7 @@
 package com.customers.zktc.inject.component
 
-import androidx.lifecycle.ViewModel
-import com.customers.zktc.base.life.AnkoActivity
 import com.customers.zktc.inject.module.ActivityModule
 import com.customers.zktc.inject.scope.ActivityScope
-import dagger.Component
 import dagger.Subcomponent
 
 @ActivityScope

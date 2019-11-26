@@ -6,12 +6,12 @@ import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.component.FragmentComponent
 import com.customers.zktc.inject.qualifier.AppContext
 import com.customers.zktc.inject.scope.ApplicationScope
-import com.customers.zktc.ui.ZktcApplication
+import com.customers.zktc.ui.DemoApplication
 import dagger.Module
 import dagger.Provides
 
 @Module(subcomponents = [ActivityComponent::class, FragmentComponent::class])
-class AppModule(val app:ZktcApplication) {
+class AppModule(val app:DemoApplication) {
 
     @AppContext
     @Provides
@@ -23,7 +23,7 @@ class AppModule(val app:ZktcApplication) {
     @AppContext
     @Provides
     @ApplicationScope
-    internal fun getApplication():ZktcApplication{
+    internal fun getApplication():DemoApplication{
         return app
     }
 
