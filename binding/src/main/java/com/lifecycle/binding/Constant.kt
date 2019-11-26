@@ -1,6 +1,5 @@
 package com.lifecycle.binding
 
-import com.customers.zktc.BR
 
 /**
  * Company:
@@ -9,5 +8,5 @@ import com.customers.zktc.BR
  * Email: 1033144294@qq.com
  */
 object Constant {
-    val vm = BR.vm
+    var vm = 1
 }
