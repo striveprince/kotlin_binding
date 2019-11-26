@@ -9,7 +9,7 @@ import com.lifecycle.binding.util.findLayoutView
  * Author: created by ArvinWang on 2019/11/15 10:28
  * Email: 1033144294@qq.com
  */
-interface BindInit<T,Binding : ViewDataBinding,Api> :BindParse<T,Binding,Api> {
+interface BindInit<T,Binding : ViewDataBinding> :BindParse<T,Binding> {
     override fun layoutId()=findLayoutView(javaClass).layout[0]
 
 }

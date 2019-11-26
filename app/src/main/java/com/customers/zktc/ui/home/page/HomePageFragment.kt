@@ -1,6 +1,10 @@
 package com.customers.zktc.ui.home.page
 
-import androidx.fragment.app.Fragment
+import com.customers.zktc.R
+import com.customers.zktc.base.life.binding.DataBindingFragment
+import com.customers.zktc.databinding.LayoutRecyclerViewBinding
+import com.lifecycle.binding.inter.bind.annotation.LayoutView
 
-class HomePageFragment : Fragment() {
+@LayoutView(layout = [R.layout.layout_recycler_view])
+class HomePageFragment : DataBindingFragment<HomePageModel,LayoutRecyclerViewBinding>() {
 }

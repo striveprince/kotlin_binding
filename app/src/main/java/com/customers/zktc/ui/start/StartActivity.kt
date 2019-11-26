@@ -35,6 +35,7 @@ class StartActivity : AnkoActivity<StartModel>() {
         ARouterUtil.start()
         finish()
     }
+
     override fun parse(t: StartModel, context: Context): AnkoContext<Context> {
         return AnkoContext.create(this).apply{
             frameLayout{

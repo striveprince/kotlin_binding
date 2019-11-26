@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.lifecycle.binding.inter.Parse
 
-interface BindParse<T, B : ViewDataBinding,Api> : Parse<T,Api> {
+interface BindParse<T, B : ViewDataBinding> : Parse<T> {
     override fun createView(t: T, context: Context, parent: ViewGroup?, attachToParent: Boolean) =
         parse(t, context, parent, attachToParent).root
 

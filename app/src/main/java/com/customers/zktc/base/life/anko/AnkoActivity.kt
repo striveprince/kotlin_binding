@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import com.customers.zktc.base.life.BaseActivity
 import com.customers.zktc.inject.data.Api
+import com.lifecycle.binding.inter.Init
 import com.lifecycle.binding.inter.anko.AnkoParse
 import org.jetbrains.anko.AnkoContext
 
@@ -15,4 +16,4 @@ import org.jetbrains.anko.AnkoContext
  * Email: 1033144294@qq.com
  */
 abstract class AnkoActivity<Model : ViewModel> : BaseActivity<Model>(),
-    AnkoParse<Model, AnkoContext<Context>,Api>
+    AnkoParse<Model, AnkoContext<Context>>
