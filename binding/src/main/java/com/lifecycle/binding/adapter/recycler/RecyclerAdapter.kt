@@ -21,7 +21,7 @@ class RecyclerAdapter<E: Inflate<RecyclerView.ViewHolder>>:RecyclerView.Adapter<
 
     override fun getItemViewType(position: Int): Int {
         val e = adapterList[position]
-        val viewType = e.getLayoutId()
+        val viewType = e.layoutId()
         sparseArray.put(viewType, e)
         return viewType
     }
