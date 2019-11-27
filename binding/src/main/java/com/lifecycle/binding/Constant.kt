@@ -9,4 +9,5 @@ package com.lifecycle.binding
  */
 object Constant {
     var vm = 1
+    var inflate = 1
 }

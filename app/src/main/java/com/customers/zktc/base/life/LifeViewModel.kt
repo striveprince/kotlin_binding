@@ -2,9 +2,7 @@ package com.customers.zktc.base.life
 
 import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
 import com.customers.zktc.inject.data.Api
-import com.lifecycle.binding.inter.Init
 
 @Suppress("UNCHECKED_CAST")
 abstract class LifeViewModel<Owner:LifecycleOwner> :BaseViewModel(){

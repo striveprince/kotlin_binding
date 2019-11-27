@@ -14,19 +14,17 @@ import com.customers.zktc.inject.component.FragmentComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.FragmentModule
 import com.customers.zktc.ui.TomtawApplication
-import com.lifecycle.binding.inter.Init
+import com.lifecycle.binding.inter.LifecycleInit
 import com.lifecycle.binding.inter.Parse
 import javax.inject.Inject
 import kotlin.reflect.jvm.javaType
 
-abstract class BaseFragment<Model:ViewModel>():Fragment(),Parse<Model>, Init<Api> {
+abstract class BaseFragment<Model:ViewModel,B>:Fragment(),Parse<Model,B>, LifecycleInit<Api> {
     lateinit var model: Model
     @Inject lateinit var api: Api
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         inject(TomtawApplication.application.fragmentBuilder,savedInstanceState)
-        val view = createView(model,context!!)
-        initData(api,this,savedInstanceState)
-        return view
+        return createView(model,context!!)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -36,10 +34,13 @@ abstract class BaseFragment<Model:ViewModel>():Fragment(),Parse<Model>, Init<Api
         val component = builder.applyFragmentModule(FragmentModule(this)).build()
         val method = FragmentComponent::class.java.getDeclaredMethod("inject",this::class.java)
         method.invoke(component,this)
+        initData(api,this,savedInstanceState)
     }
 
     @CallSuper
     override fun initData(api: Api, owner: LifecycleOwner, bundle: Bundle?) {
-        if(model is BaseViewModel)(model as BaseViewModel).initData(api,owner)
+        if(model is BaseViewModel)(model as BaseViewModel).initData(api,owner,bundle)
     }
+
+    override fun t() = model
 }

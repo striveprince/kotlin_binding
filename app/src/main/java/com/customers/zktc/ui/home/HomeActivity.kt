@@ -24,6 +24,11 @@ class HomeActivity : AnkoActivity<HomeModel>() {
     private var beforeIndex = -1
     private val homeEntities = ArrayList<HomeEntity>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun parse(t: HomeModel, context: Context): AnkoContext<Context> {
         return AnkoContext.create(this).apply {
             verticalLayout {
@@ -41,6 +46,7 @@ class HomeActivity : AnkoActivity<HomeModel>() {
         super.initData(api, owner, bundle)
         for (index in 0..5) homeEntities.add(HomeEntity(index))
         model.currentIndex.observer(this){ checkFragment(it) }
+        model.currentIndex.value = 0
     }
 
     private fun checkFragment(position: Int) {

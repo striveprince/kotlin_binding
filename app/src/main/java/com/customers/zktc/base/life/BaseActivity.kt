@@ -11,14 +11,13 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.ActivityModule
-import com.customers.zktc.ui.ARouterUtil
 import com.customers.zktc.ui.TomtawApplication
-import com.lifecycle.binding.inter.Init
+import com.lifecycle.binding.inter.LifecycleInit
 import com.lifecycle.binding.inter.Parse
 import javax.inject.Inject
 import kotlin.reflect.jvm.javaType
 
-abstract class BaseActivity<Model : ViewModel> : AppCompatActivity(), Parse<Model>, Init<Api> {
+abstract class BaseActivity<Model : ViewModel,B> : AppCompatActivity(), Parse<Model,B>, LifecycleInit<Api> {
     lateinit var model: Model
     @Inject lateinit var api: Api
 
@@ -41,7 +40,10 @@ abstract class BaseActivity<Model : ViewModel> : AppCompatActivity(), Parse<Mode
 
     @CallSuper
     override fun initData(api: Api, owner: LifecycleOwner, bundle: Bundle?) {
-        if (model is BaseViewModel) (model as BaseViewModel).initData(api, owner)
+        if (model is BaseViewModel) (model as BaseViewModel).initData(api, owner,bundle)
     }
+
+    override fun t()=model
+
 }
 

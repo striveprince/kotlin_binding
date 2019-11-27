@@ -2,9 +2,9 @@ package com.lifecycle.binding.adapter
 
 import android.view.View
 
-interface IModelAdapter<E> : IListAdapter<E> {
+interface IEventAdapter<E> : IListAdapter<E> {
+    val adapterList:List<E>
     fun clear(){}
-    val holderList:List<E>
-    fun size(): Int = holderList.size
+    fun size(): Int = adapterList.size
     fun setIEntity(position: Int, e: E, type: Int, view: View?): Boolean
 }

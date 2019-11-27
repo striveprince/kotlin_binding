@@ -8,14 +8,12 @@ import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.AdapterViewAnimator
 import android.widget.ListAdapter
-import android.widget.ListView
 import android.widget.SpinnerAdapter
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
-import com.lifecycle.binding.adapter.IModelAdapter
+import com.lifecycle.binding.adapter.IEventAdapter
 
 /**
  * Created by arvin on 2018/1/17.
@@ -29,7 +27,7 @@ object ViewBindingAdapter {
     }
     @JvmStatic
     @BindingAdapter("adapter")
-    fun setAdapter(view: View, adapter: IModelAdapter<*>?) {
+    fun setAdapter(view: View, adapter: IEventAdapter<*>?) {
         if (adapter == null) return
         if (view is RecyclerView && adapter is RecyclerView.Adapter<*>) {
             view.adapter = adapter

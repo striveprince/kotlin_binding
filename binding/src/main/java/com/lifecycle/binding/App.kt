@@ -22,11 +22,11 @@ class App constructor(val application: Application) : Application.ActivityLifecy
 
         fun floatToPx(dp: Float) = application.resources.displayMetrics.density * dp
 
-        fun floatTodp(px: Float) = px / application.resources.displayMetrics.density
+        fun floatToDp(px: Float) = px / application.resources.displayMetrics.density
 
         fun toPx(dp: Int): Int = (floatToPx(dp.toFloat()) + 0.5).toInt()
 
-        fun toDp(px: Int) = (floatTodp(px.toFloat()) + 0.5).toInt()
+        fun toDp(px: Int) = (floatToDp(px.toFloat()) + 0.5).toInt()
 
         fun getWeightWidth(sum: Int) = getScreenWidth() / sum
 
