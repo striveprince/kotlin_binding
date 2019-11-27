@@ -15,7 +15,7 @@ interface BindParse<T, B : ViewDataBinding> : Parse<T,B> {
     override fun createView(t: T, context: Context, parent: ViewGroup?, attachToParent: Boolean): View {
         val binding  = parse(t, context, parent, attachToParent)
         binding.setVariable(Constant.vm,t)
-        binding.setVariable(Constant.inflate,this)
+        binding.setVariable(Constant.parse,this)
         binding.root.setTag(R.id.dataBinding,binding)
         return binding.root
     }

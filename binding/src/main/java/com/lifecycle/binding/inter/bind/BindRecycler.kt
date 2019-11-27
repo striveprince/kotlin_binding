@@ -18,7 +18,7 @@ interface BindRecycler<T, Binding : ViewDataBinding> : BindParse<T, Binding>, In
 
     override fun createView(context: Context, parent: ViewGroup, b: Any?) =
         if(b is ViewDataBinding){
-            b.setVariable(Constant.inflate,this)
+            b.setVariable(Constant.parse,this)
             b.setVariable(Constant.vm,t())
             b.executePendingBindings()
             b.root

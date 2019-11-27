@@ -12,13 +12,13 @@ import com.lifecycle.binding.Constant
 interface RecyclerInflate: Inflate<RecyclerView.ViewHolder> {
     override fun createView(context: Context, parent: ViewGroup, b: Any?): View {
         return if(b is ViewDataBinding){
-            b.setVariable(Constant.inflate,this)
+            b.setVariable(Constant.parse,this)
             b.setVariable(Constant.vm,this)
             b.executePendingBindings()
             b.root
         }else {
             val binding  = DataBindingUtil.inflate(LayoutInflater.from(context),layoutId(),parent,false) as ViewDataBinding
-            binding.setVariable(Constant.inflate,this)
+            binding.setVariable(Constant.parse,this)
             binding.setVariable(Constant.vm,this)
             return binding.root
         }
