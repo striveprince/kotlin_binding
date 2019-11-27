@@ -1,12 +1,11 @@
 package com.lifecycle.binding.inter.bind
 
 import android.content.Context
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.lifecycle.binding.Constant
-import com.lifecycle.binding.inter.Inflate
+import com.lifecycle.binding.inter.inflate.Inflate
 import com.lifecycle.binding.util.findLayoutView
 
 /**
@@ -17,13 +16,13 @@ import com.lifecycle.binding.util.findLayoutView
  */
 interface BindRecycler<T, Binding : ViewDataBinding> : BindParse<T, Binding>, Inflate<RecyclerView.ViewHolder> {
 
-    override fun createView(context: Context, v: ViewGroup, binding: Any?) =
-        if(binding is ViewDataBinding){
-            binding.setVariable(Constant.inflate,this)
-            binding.setVariable(Constant.vm,t())
-            binding.executePendingBindings()
-            binding.root
-        }else createView(t(),context,v,false)
+    override fun createView(context: Context, parent: ViewGroup, b: Any?) =
+        if(b is ViewDataBinding){
+            b.setVariable(Constant.inflate,this)
+            b.setVariable(Constant.vm,t())
+            b.executePendingBindings()
+            b.root
+        }else createView(t(),context,parent,false)
 
     override fun layoutId()= findLayoutView(javaClass).layout[layoutIndex()]
 }

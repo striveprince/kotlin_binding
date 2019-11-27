@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lifecycle.binding.R
 import com.lifecycle.binding.adapter.IEventAdapter
-import com.lifecycle.binding.inter.Inflate
+import com.lifecycle.binding.inter.inflate.Inflate
 
 class RecyclerHolder<E: Inflate<RecyclerView.ViewHolder>>(private val v: ViewGroup, var e:E)
     :RecyclerView.ViewHolder(e.createView(v.context,v,null)){

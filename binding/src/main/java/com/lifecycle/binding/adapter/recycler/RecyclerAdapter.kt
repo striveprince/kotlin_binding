@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lifecycle.binding.adapter.IEventAdapter
-import com.lifecycle.binding.inter.Inflate
+import com.lifecycle.binding.inter.inflate.Inflate
 
 class RecyclerAdapter<E: Inflate<RecyclerView.ViewHolder>>:RecyclerView.Adapter<RecyclerHolder<E>>(),IEventAdapter<E> {
     override val adapterList = ArrayList<E>()
