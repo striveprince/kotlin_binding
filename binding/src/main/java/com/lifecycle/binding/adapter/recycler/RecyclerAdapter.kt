@@ -30,7 +30,6 @@ class RecyclerAdapter<E: Inflate<RecyclerView.ViewHolder>>:RecyclerView.Adapter<
         holder.bindViewHolder(adapterList[position],eventAdapter)
     }
 
-
     override fun setIEntity(position: Int, e: E, type: Int, view: View?): Boolean {
         return false
     }
