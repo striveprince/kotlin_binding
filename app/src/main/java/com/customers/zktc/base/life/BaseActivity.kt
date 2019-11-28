@@ -38,12 +38,14 @@ abstract class BaseActivity<Model : ViewModel,B> : AppCompatActivity(), Parse<Mo
         return view
     }
 
+    override fun t()=model
+
     @CallSuper
     override fun initData(api: Api, owner: LifecycleOwner, bundle: Bundle?) {
         if (model is BaseViewModel) (model as BaseViewModel).initData(api, owner,bundle)
     }
 
-    override fun t()=model
+
 
 }
 

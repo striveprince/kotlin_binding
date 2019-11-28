@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
 import com.lifecycle.binding.Constant
 
-interface RecyclerInflate: Inflate<RecyclerView.ViewHolder> {
+interface RecyclerInflate: Inflate ,Recycler{
     override fun createView(context: Context, parent: ViewGroup, b: Any?): View {
         return if(b is ViewDataBinding){
             b.setVariable(Constant.parse,this)

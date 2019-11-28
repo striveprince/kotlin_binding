@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lifecycle.binding.adapter.IEventAdapter
 import com.lifecycle.binding.inter.inflate.Inflate
 
-class RecyclerAdapter<E: Inflate<RecyclerView.ViewHolder>>:RecyclerView.Adapter<RecyclerHolder<E>>(),IEventAdapter<E> {
+class RecyclerAdapter<E: Inflate>:RecyclerView.Adapter<RecyclerHolder<E>>(),IEventAdapter<E> {
     override val adapterList = ArrayList<E>()
     private val sparseArray = SparseArray<E>()
     private val eventAdapter:IEventAdapter<E> by lazy { this }
@@ -26,6 +26,9 @@ class RecyclerAdapter<E: Inflate<RecyclerView.ViewHolder>>:RecyclerView.Adapter<
         return viewType
     }
 
+    override fun clear() {
+        adapterList.clear()
+    }
     override fun onBindViewHolder(holder: RecyclerHolder<E>, position: Int) {
         holder.bindViewHolder(adapterList[position],eventAdapter)
     }
