@@ -22,13 +22,15 @@ interface BindRecycler<T, Binding : ViewDataBinding> : BindParse<T, Binding>, In
     override fun createView(context: Context, parent: ViewGroup, convertView: View?): View {
         val b = convertView?.getTag(R.id.dataBinding)
         val layoutId = convertView?.getTag(R.id.inflate)?.let { (it as Inflate).layoutId() }
-        val view = if(b is ViewDataBinding&&layoutId() ==layoutId){
+        val binding = if(b is ViewDataBinding&&layoutId() == layoutId){
             b.setVariable(Constant.parse,this)
             b.setVariable(Constant.vm,t())
             b.executePendingBindings()
-            b.root
-        }else createView(t(),context,parent,false)
+            b
+        }else parse(t(),context,parent,false)
+        val view = binding.root
         view.setTag(R.id.inflate,this)
+        view.setTag(R.id.dataBinding,binding)
         return view
     }
 
