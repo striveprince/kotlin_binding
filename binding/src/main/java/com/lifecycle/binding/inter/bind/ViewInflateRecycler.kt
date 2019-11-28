@@ -10,4 +10,6 @@ class ViewInflateRecycler<Bean,Binding:ViewDataBinding>(private val bean:Bean) :
         super.holder(holder)
         this.holder = holder
     }
+
+
 }

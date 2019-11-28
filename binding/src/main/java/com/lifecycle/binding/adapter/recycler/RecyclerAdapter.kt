@@ -4,15 +4,26 @@ import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.lifecycle.binding.adapter.IEventAdapter
+import com.lifecycle.binding.adapter.AdapterType
+import com.lifecycle.binding.adapter.IEvent
+import com.lifecycle.binding.adapter.IListAdapter
 import com.lifecycle.binding.inter.inflate.Inflate
+import io.reactivex.Observable
 
-class RecyclerAdapter<E: Inflate>:RecyclerView.Adapter<RecyclerHolder<E>>(),IEventAdapter<E> {
+open class RecyclerAdapter<E: Inflate>:RecyclerView.Adapter<RecyclerHolder<E>>(),IListAdapter<E>{
     override val adapterList = ArrayList<E>()
     private val sparseArray = SparseArray<E>()
-    private val eventAdapter:IEventAdapter<E> by lazy { this }
+
+    private val iEvent: IEvent<E> by lazy { this }
+    private val events: ArrayList<IEvent<E>> = ArrayList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerHolder<E> {
         return RecyclerHolder(parent,sparseArray.get(viewType))
+    }
+
+    override fun setEvent(position: Int, e: E, type: Int, view: View?): Observable<Any> {
+        for (event in events) return event.setEvent(position, e, type, view)
+        return Observable.just(setIEntity(position,e,type,view))
     }
 
     override fun getItemCount(): Int {
@@ -26,18 +37,32 @@ class RecyclerAdapter<E: Inflate>:RecyclerView.Adapter<RecyclerHolder<E>>(),IEve
         return viewType
     }
 
-    override fun clear() {
-        adapterList.clear()
-    }
     override fun onBindViewHolder(holder: RecyclerHolder<E>, position: Int) {
-        holder.bindViewHolder(adapterList[position],eventAdapter)
+        holder.bindViewHolder(adapterList[position],iEvent)
     }
 
-    override fun setIEntity(position: Int, e: E, type: Int, view: View?): Boolean {
-        return false
+    override fun addEventAdapter(event: IEvent<E>) {
+        events.add(0,event)
     }
 
-    override fun setList(position: Int, es: List<E>, type: Int): Boolean {
-        return false
+    override fun notify(p: Int, type: Int,  from: Int): Boolean {
+        when(type){
+            AdapterType.add->notifyItemInserted(p)
+            AdapterType.move->notifyItemMoved(from,p)
+            AdapterType.remove->notifyItemRemoved(p)
+            AdapterType.set->notifyItemChanged(p)
+            else->notifyDataSetChanged()
+        }
+        return true
+    }
+
+    override fun notifyList(p: Int, type: Int, es: List<E>, from: Int): Boolean {
+        when(type){
+            AdapterType.add->notifyItemRangeInserted(p,es.size)
+            AdapterType.remove->notifyItemRangeRemoved(p,es.size)
+            AdapterType.set->notifyItemRangeChanged(p,es.size)
+            else ->notifyDataSetChanged()
+        }
+        return true
     }
 }

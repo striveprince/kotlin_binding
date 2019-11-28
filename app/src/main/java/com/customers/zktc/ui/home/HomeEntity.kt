@@ -12,9 +12,5 @@ import com.google.android.material.tabs.TabLayout
  * Email: 1033144294@qq.com
  */
 class HomeEntity(p: Int) {
-    fun tab(): TabLayout.Tab =
-        TabLayout.Tab()
-
     val fragment: Fragment = HomeInterrogationFragment()
-
 }

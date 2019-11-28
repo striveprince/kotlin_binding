@@ -16,7 +16,6 @@ interface BindParse<T, B : ViewDataBinding> : Parse<T,B> {
         val binding  = parse(t, context, parent, attachToParent)
         binding.setVariable(Constant.vm,t)
         binding.setVariable(Constant.parse,this)
-        binding.root.setTag(R.id.dataBinding,binding)
         return binding.root
     }
 
