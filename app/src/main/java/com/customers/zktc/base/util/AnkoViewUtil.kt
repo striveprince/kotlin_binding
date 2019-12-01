@@ -18,7 +18,7 @@ import org.jetbrains.anko.custom.ankoView
 inline fun ViewManager.smartRefreshLayout(init: SmartRefreshLayout.() -> Unit): SmartRefreshLayout =
     ankoView({ SmartRefreshLayout(it) }, theme = 0, init = init)
 
-fun ankoRecycler(
+fun recycler(
     context: Context,
     recyclerAdapter: RecyclerView.Adapter<*> = RecyclerAdapter<Inflate>(),
     recyclerManager: RecyclerView.LayoutManager = LinearLayoutManager(context),
