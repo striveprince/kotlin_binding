@@ -8,7 +8,9 @@ import com.lifecycle.binding.inter.LifecycleInit
 
 abstract class BaseViewModel :ViewModel(), LifecycleInit<Api> {
     lateinit var api:Api
+
     override fun initData(api:Api, owner: LifecycleOwner, bundle: Bundle?) {
         this.api = api
     }
+
 }

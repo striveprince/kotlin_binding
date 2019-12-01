@@ -12,6 +12,7 @@ import com.lifecycle.binding.inter.inflate.Inflate
 import com.lifecycle.binding.util.observer
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.internal.disposables.ListCompositeDisposable
 
 abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewModel<Owner>(), IListAdapter<E> {
     var state = AdapterType.no
@@ -19,16 +20,15 @@ abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewMode
     var position = MutableLiveData(0)
     internal val adapter = MutableLiveData<IListAdapter<E>>()
     override val adapterList: MutableList<E> = ArrayList()
-    //    override val adapterList: MutableList<E> = ObservableArrayList<E>()
-
+    private val disposables = ListCompositeDisposable()
     override fun attachData(owner: Owner, api: Api, bundle: Bundle?) {
         super.attachData(owner, api, bundle)
         position.observer(owner) {
             loading = true
             getData(api, state, it)
                 .subscribe { es ->
-                    setList(it, es, state)
                     loading = false
+                    setList(it, es, state)
                 }
         }
         adapter.observer(owner) { state = AdapterType.add }
@@ -51,5 +51,10 @@ abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewMode
 
     override fun setEvent(position: Int, e: E, type: Int, view: View?): Observable<Any> {
         return adapter.value?.setEvent(position, e, type, view) ?: Observable.just(false as Any)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
     }
 }
