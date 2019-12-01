@@ -57,4 +57,21 @@ abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewMode
         super.onCleared()
         disposables.clear()
     }
+
+
+    override fun onInserted(position: Int, count: Int) {
+        adapter.value?.onInserted(position, count)
+    }
+
+    override fun onRemoved(position: Int, count: Int) {
+        adapter.value?.onRemoved(position, count)
+    }
+
+    override fun onMoved(fromPosition: Int, toPosition: Int) {
+        adapter.value?.onMoved(fromPosition, toPosition)
+    }
+
+    override fun onChanged(position: Int, count: Int, payload: Any?) {
+        adapter.value?.onChanged(position, count, payload)
+    }
 }
