@@ -1,9 +1,10 @@
 package com.lifecycle.binding.adapter
 
 import android.view.View
+import androidx.recyclerview.widget.ListUpdateCallback
 
 
-interface IListAdapter<E> :IEvent<E> {
+interface IListAdapter<E> :IEvent<E>, ListUpdateCallback {
 
     val adapterList: MutableList<E>
 
@@ -120,4 +121,19 @@ interface IListAdapter<E> :IEvent<E> {
 
     fun notifyDataSetChanged()
 
+
+    override fun onChanged(position: Int, count: Int, payload: Any?) {
+
+    }
+
+    override fun onMoved(fromPosition: Int, toPosition: Int) {
+
+    }
+
+    override fun onInserted(position: Int, count: Int) {
+
+    }
+
+    override fun onRemoved(position: Int, count: Int) {
+    }
 }
