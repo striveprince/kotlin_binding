@@ -1,7 +1,7 @@
 package com.customers.zktc.ui.home.browse
 
-import com.customers.zktc.base.life.BaseViewModel
+import com.customers.zktc.base.life.viewmodel.BaseViewModel
 
-class HomeBrowseModel :BaseViewModel(){
+class HomeBrowseModel : BaseViewModel(){
 
 }

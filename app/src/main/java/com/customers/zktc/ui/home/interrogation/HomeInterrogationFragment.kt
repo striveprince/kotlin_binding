@@ -1,27 +1,22 @@
 package com.customers.zktc.ui.home.interrogation
 
 import android.content.Context
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.customers.zktc.base.life.BaseFragment
-import com.customers.zktc.base.life.anko.AnkoActivity
 import com.customers.zktc.base.life.anko.AnkoFragment
+import com.customers.zktc.base.util.ankoRecycler
 import com.lifecycle.binding.adapter.recycler.RecyclerAdapter
-import com.lifecycle.binding.inter.Parse
-import com.lifecycle.binding.util.recyclerView
+import com.lifecycle.binding.inter.inflate.DiffInflate
+import com.lifecycle.binding.inter.inflate.Inflate
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.frameLayout
 
 class HomeInterrogationFragment:AnkoFragment<HomeInterrogationModel>() {
 
     override fun parse(t: HomeInterrogationModel, context: Context): AnkoContext<Context> {
-
-//        val recyclerAdapter = RecyclerAdapter<Parse<Any>>()
-        return AnkoContext.Companion.create(context).apply {
-            frameLayout()
-//            recyclerView{
-//                adapter = recyclerAdapter
-//                layoutManager = LinearLayoutManager(context)
-//            }
-        }
+        t.adapter.value  = RecyclerAdapter()
+        return ankoRecycler(context, (t.adapter.value as RecyclerAdapter<DiffInflate>),load={ position, state->
+            if(!t.loading){
+                t.position.value = position
+                t.state = state
+            }
+        })
     }
 }

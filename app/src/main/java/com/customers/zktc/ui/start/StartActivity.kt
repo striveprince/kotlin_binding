@@ -11,7 +11,7 @@ import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.ui.ARouterUtil
 import com.customers.zktc.ui.TomtawApplication
-import com.customers.zktc.ui.rxBusMain
+import com.customers.zktc.base.util.rxBusMain
 import com.customers.zktc.ui.start.StartActivity.Companion.start
 import org.jetbrains.anko.*
 

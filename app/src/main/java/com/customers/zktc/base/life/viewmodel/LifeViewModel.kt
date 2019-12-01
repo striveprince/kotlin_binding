@@ -1,11 +1,11 @@
-package com.customers.zktc.base.life
+package com.customers.zktc.base.life.viewmodel
 
 import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
 import com.customers.zktc.inject.data.Api
 
 @Suppress("UNCHECKED_CAST")
-abstract class LifeViewModel<Owner:LifecycleOwner> :BaseViewModel(){
+abstract class LifeViewModel<Owner:LifecycleOwner> : BaseViewModel(){
     override fun initData(api:Api, owner: LifecycleOwner, bundle: Bundle? ) {
         super.initData(api, owner, bundle)
         attachData(owner as Owner,api,bundle)

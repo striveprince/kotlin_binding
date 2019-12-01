@@ -3,7 +3,7 @@ package com.lifecycle.binding.adapter
 import android.view.View
 
 
-interface IListAdapter<E> :IEvent<E>{
+interface IListAdapter<E> :IEvent<E> {
 
     val adapterList: MutableList<E>
 
@@ -32,6 +32,7 @@ interface IListAdapter<E> :IEvent<E>{
             AdapterType.move -> moveList(position, adapterList.indexOf(es.first()), es.size)
             AdapterType.remove -> removeList(position, adapterList.indexOf(es.first()), es.size)
             AdapterType.refresh -> refreshList(position, es)
+            AdapterType.set -> set(position,es)
             else -> false
         }
     }
@@ -103,6 +104,20 @@ interface IListAdapter<E> :IEvent<E>{
         }
     }
 
+    fun set(position: Int,es:List<E>):Boolean{
+        if(position in adapterList.indices&&(position+es.size in adapterList.indices)){
+            for (index in es.indices) {
+                adapterList[index+position] = es[index]
+            }
+            return true
+        }
+        return false
+    }
+
     fun notify(p: Int, type: Int, from: Int = 0): Boolean
+
     fun notifyList(p: Int, type: Int, es: List<E>, from: Int = 0): Boolean
+
+    fun notifyDataSetChanged()
+
 }

@@ -1,6 +1,7 @@
 package com.customers.zktc.ui
 
 import androidx.multidex.MultiDexApplication
+import com.customers.zktc.base.util.busPost
 import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.component.DaggerAppComponent
 import com.customers.zktc.inject.component.FragmentComponent

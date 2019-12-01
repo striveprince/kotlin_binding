@@ -1,4 +1,4 @@
-package com.customers.zktc.ui
+package com.customers.zktc.base.util
 
 import com.lifecycle.binding.base.bus.RxBus
 import io.reactivex.Observable

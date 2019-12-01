@@ -1,11 +1,7 @@
 package com.customers.zktc.ui.home
 
-import android.os.Bundle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.customers.zktc.base.life.BaseViewModel
-import com.customers.zktc.base.life.LifeViewModel
-import com.customers.zktc.inject.data.Api
+import com.customers.zktc.base.life.viewmodel.BaseViewModel
 import com.google.android.material.tabs.TabLayout
 
 /**

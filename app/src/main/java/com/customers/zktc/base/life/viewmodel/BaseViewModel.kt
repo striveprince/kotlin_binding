@@ -1,4 +1,4 @@
-package com.customers.zktc.base.life
+package com.customers.zktc.base.life.viewmodel
 
 import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner

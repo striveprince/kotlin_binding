@@ -1,6 +1,6 @@
 package com.customers.zktc.ui.home.mine
 
-import com.customers.zktc.base.life.BaseViewModel
+import com.customers.zktc.base.life.viewmodel.BaseViewModel
 
-class HomeMineModel:BaseViewModel() {
+class HomeMineModel: BaseViewModel() {
 }
