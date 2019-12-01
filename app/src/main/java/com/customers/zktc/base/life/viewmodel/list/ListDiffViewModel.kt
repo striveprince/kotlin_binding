@@ -13,11 +13,11 @@ abstract class ListDiffViewModel<Owner : LifecycleOwner, E : DiffInflate> : List
     override fun refreshList(position: Int, es: List<E>): Boolean {
         if (adapter is RecyclerView.Adapter<*>) {
             CoroutineScope(Dispatchers.Default).launch {
-                loading.value = true
+                loading = true
                 val result = DiffUtil.calculateDiff(DiffUtilCallback(adapter.value!!.adapterList, es))
                 launch(Dispatchers.Main) {
                     result.dispatchUpdatesTo(adapter)
-                    loading.value = false
+                    loading = false
                 }
             }
         }
