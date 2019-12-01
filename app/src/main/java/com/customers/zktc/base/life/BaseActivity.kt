@@ -1,17 +1,22 @@
 package com.customers.zktc.base.life
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.launcher.ARouter
+import com.customers.zktc.R
 import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.ActivityModule
 import com.customers.zktc.ui.TomtawApplication
+import com.lifecycle.binding.base.view.SwipeBackLayout
 import com.lifecycle.binding.inter.LifecycleInit
 import com.lifecycle.binding.inter.Parse
 import javax.inject.Inject
@@ -23,8 +28,24 @@ abstract class BaseActivity<Model : ViewModel,B> : AppCompatActivity(), Parse<Mo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(inject(TomtawApplication.activityBuilder, savedInstanceState))
+        setContentView(initView(savedInstanceState))
     }
+
+    open fun initView(savedInstanceState: Bundle?):View{
+        val v=inject(TomtawApplication.activityBuilder, savedInstanceState)
+        return if(isSwipe()!=SwipeBackLayout.FROM_NO){
+            val view = LayoutInflater.from(this).inflate(R.layout.activity_base,null)
+            val swipeBackLayout: SwipeBackLayout = view.findViewById(R.id.swipe_back_layout)
+            swipeBackLayout.directionMode = isSwipe()
+            swipeBackLayout.addView(v, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+            val imageView: ImageView = view.findViewById(R.id.iv_shadow)
+            swipeBackLayout.setOnSwipeBackListener { _, f -> imageView.alpha = 1 - f }
+            view
+        }else v
+    }
+
+    open fun isSwipe(): Int = SwipeBackLayout.FROM_LEFT
+
 
     @Suppress("UNCHECKED_CAST")
     open fun inject(builder: ActivityComponent.Builder?, savedInstanceState: Bundle?): View {
