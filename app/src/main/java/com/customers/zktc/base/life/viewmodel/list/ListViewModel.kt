@@ -21,7 +21,6 @@ abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewMode
     var position = MutableLiveData(0)
     internal val adapter = MutableLiveData<IListAdapter<E>>()
     override val adapterList: MutableList<E> = ArrayList()
-    private val disposables = ListCompositeDisposable()
     override fun attachData(owner: Owner, api: Api, bundle: Bundle?) {
         super.attachData(owner, api, bundle)
         position.observer(owner) {
@@ -52,11 +51,6 @@ abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewMode
 
     override fun setEvent(position: Int, e: E, type: Int, view: View?): Observable<Any> {
         return adapter.value?.setEvent(position, e, type, view) ?: Observable.just(false as Any)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposables.clear()
     }
 
 

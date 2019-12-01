@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.customers.zktc.inject.data.Api
 import com.lifecycle.binding.inter.LifecycleInit
+import io.reactivex.internal.disposables.ListCompositeDisposable
 
 abstract class BaseViewModel :ViewModel(), LifecycleInit<Api> {
     lateinit var api:Api
@@ -13,4 +14,10 @@ abstract class BaseViewModel :ViewModel(), LifecycleInit<Api> {
         this.api = api
     }
 
+    val disposables = ListCompositeDisposable()
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
+    }
 }
