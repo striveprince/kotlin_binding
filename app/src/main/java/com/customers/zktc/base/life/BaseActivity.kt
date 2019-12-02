@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.launcher.ARouter
 import com.customers.zktc.R
+import com.customers.zktc.base.life.viewmodel.BaseViewModel
 import com.customers.zktc.inject.component.ActivityComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.ActivityModule
@@ -63,7 +64,7 @@ abstract class BaseActivity<Model : ViewModel,B> : AppCompatActivity(), Parse<Mo
 
     @CallSuper
     override fun initData(api: Api, owner: LifecycleOwner, bundle: Bundle?) {
-        if (model is BaseViewModel) (model as BaseViewModel).initData(api, owner,bundle)
+        if (model is BaseViewModel<*>) (model as BaseViewModel<*>).initData(api, owner,bundle)
     }
 
 

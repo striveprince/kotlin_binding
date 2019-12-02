@@ -1,7 +1,6 @@
 package com.customers.zktc.ui.home.interrogation
 
 import com.customers.zktc.base.life.viewmodel.BaseDiffListViewModel
-import com.lifecycle.binding.inter.viewmodel.list.ListDiffViewModel
 import com.customers.zktc.inject.data.Api
 import com.lifecycle.binding.inter.inflate.DiffInflate
 import io.reactivex.Single
