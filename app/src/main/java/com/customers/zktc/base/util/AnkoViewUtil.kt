@@ -25,8 +25,7 @@ fun recycler(
     recyclerManager: RecyclerView.LayoutManager = LinearLayoutManager(context),
     recyclerAnimator: RecyclerView.ItemAnimator? = DefaultItemAnimator(),
     load: (Int, Int) -> Unit= {_,_-> }
-) =
-    AnkoContext.create(context).apply {
+) = AnkoContext.create(context).apply {
         smartRefreshLayout {
             setOnMultiListener(object : SimpleMultiListener() {
                 override fun onLoadMore(refreshLayout: RefreshLayout) {
