@@ -10,12 +10,6 @@ import org.jetbrains.anko.AnkoContext
 class HomeInterrogationFragment:AnkoFragment<HomeInterrogationModel>() {
 
     override fun parse(t: HomeInterrogationModel, context: Context): AnkoContext<Context> {
-        t.adapter.value  = RecyclerAdapter()
-        return recycler(context, (t.adapter.value as RecyclerAdapter<DiffInflate>),load={ position, state->
-            if(!t.loading){
-                t.position.value = position
-                t.state = state
-            }
-        })
+        return recycler(context, (t.adapter.value as RecyclerAdapter<DiffInflate>),listViewModel= t)
     }
 }

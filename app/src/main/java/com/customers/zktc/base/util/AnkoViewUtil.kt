@@ -5,6 +5,7 @@ import android.view.ViewManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.customers.zktc.base.life.viewmodel.list.ListViewModel
 import com.lifecycle.binding.adapter.AdapterType
 import com.lifecycle.binding.adapter.recycler.RecyclerAdapter
 import com.lifecycle.binding.inter.inflate.Inflate
@@ -48,3 +49,19 @@ fun recycler(
             }
         }
     }
+
+fun recycler(
+    context: Context,
+    recyclerAdapter: RecyclerView.Adapter<*> = RecyclerAdapter<Inflate>(),
+    recyclerManager: RecyclerView.LayoutManager = LinearLayoutManager(context),
+    recyclerAnimator: RecyclerView.ItemAnimator? = DefaultItemAnimator(),
+    listViewModel: ListViewModel<*,*>
+) =recycler(context, recyclerAdapter, recyclerManager, recyclerAnimator) { position, state->
+    if(listViewModel.loading.value!!){
+        listViewModel.position = position
+        listViewModel.state = state
+        listViewModel.loading.value = true
+    }
+}
+
+
