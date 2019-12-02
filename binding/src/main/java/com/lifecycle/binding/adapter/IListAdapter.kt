@@ -10,7 +10,7 @@ interface IListAdapter<E> :IEvent<E>, ListUpdateCallback {
 
     fun addEventAdapter(event: IEvent<E>){}
 
-    fun clearData() {
+    fun clearList() {
         adapterList.clear()
         notifyList(0,AdapterType.remove,adapterList)
     }

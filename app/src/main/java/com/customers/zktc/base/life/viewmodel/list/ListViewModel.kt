@@ -15,11 +15,10 @@ import com.lifecycle.binding.util.observer
 import io.reactivex.Observable
 import io.reactivex.Single
 
-abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewModel<Owner>(), IListAdapter<E> {
+abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate>(val adapter: IListAdapter<E> =RecyclerAdapter()) : LifeViewModel<Owner>(), IListAdapter<E> {
     var state = AdapterType.no
     var position = 0
     val loading  = MutableLiveData<Boolean>(false)
-    internal val adapter = MutableLiveData<IListAdapter<E>>(RecyclerAdapter())
     override val adapterList: MutableList<E> = ArrayList()
     override fun attachData(owner: Owner, api: Api, bundle: Bundle?) {
         super.attachData(owner, api, bundle)
@@ -29,99 +28,98 @@ abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate> : LifeViewMode
                 .subscribe { es ->
                     setList(position, es, state) } }
         }
-        adapter.observer(owner) { state = AdapterType.add }
     }
 
 
     abstract fun getData(api: Api, position: Int, state: Int): Single<MutableList<E>>
 
     override fun notify(p: Int, type: Int, from: Int): Boolean {
-        return adapter.value?.notify(p, type, from) ?: false
+        return adapter.notify(p, type, from)
     }
 
     override fun notifyList(p: Int, type: Int, es: List<E>, from: Int): Boolean {
         loading.value = false
-        return adapter.value?.notifyList(p, type, es, from) ?: false
+        return adapter.notifyList(p, type, es, from)
     }
 
     override fun notifyDataSetChanged() {
-        adapter.value?.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
     }
 
     override fun setEvent(position: Int, e: E, type: Int, view: View?): Observable<Any> {
-        return adapter.value?.setEvent(position, e, type, view) ?: Observable.just(false as Any)
+        return adapter.setEvent(position, e, type, view)
     }
 
 
     override fun onInserted(position: Int, count: Int) {
-        adapter.value?.onInserted(position, count)
+        adapter.onInserted(position, count)
     }
 
     override fun onRemoved(position: Int, count: Int) {
-        adapter.value?.onRemoved(position, count)
+        adapter.onRemoved(position, count)
     }
 
     override fun onMoved(fromPosition: Int, toPosition: Int) {
-        adapter.value?.onMoved(fromPosition, toPosition)
+        adapter.onMoved(fromPosition, toPosition)
     }
 
     override fun onChanged(position: Int, count: Int, payload: Any?) {
-        adapter.value?.onChanged(position, count, payload)
+        adapter.onChanged(position, count, payload)
     }
 
     override fun refreshList(position: Int, es: List<E>): Boolean {
-        return adapter.value?.refreshList(position, es)?: false
+        return adapter.refreshList(position, es)
     }
 
     override fun setList(position: Int, es: MutableList<E>, type: Int): Boolean {
-        return adapter.value?.setList(position, es,type)?: false
+        return adapter.setList(position, es,type)
     }
 
     override fun add(position: Int, e: E): Boolean {
-        return adapter.value?.add(position, e)?:false
+        return adapter.add(position, e)
     }
 
     override fun set(position: Int, e: E): Boolean {
-        return adapter.value?.set(position, e)?:false
+        return adapter.set(position, e)
     }
 
     override fun remove(position: Int, e: E): Boolean {
-        return adapter.value?.remove(position, e)?:false
+        return adapter.remove(position, e)
     }
 
     override fun move(position: Int, e: E): Boolean {
-        return adapter.value?.move(position, e)?:false
+        return adapter.move(position, e)
     }
 
     override fun moveList(position: Int, from: Int, size: Int): Boolean {
-        return adapter.value?.moveList(position, from, size)?:false
+        return adapter.moveList(position, from, size)
     }
 
     override fun removeList(position: Int, from: Int, size: Int): Boolean {
-        return adapter.value?.removeList(position, from, size)?:false
+        return adapter.removeList(position, from, size)
     }
 
     override fun addList(position: Int, es: List<E>): Boolean {
-        return adapter.value?.addList(position, es)?:false
+        return adapter.addList(position, es)
     }
 
     override fun addEventAdapter(event: IEvent<E>) {
-        adapter.value?.addEventAdapter(event)
+        adapter.addEventAdapter(event)
     }
 
-    override fun clearData() {
-        adapter.value?.clearData()
+    override fun clearList() {
+        adapter.clearList()
     }
 
     override fun size(): Int {
-        return adapter.value?.size()?:0
+        return adapter.size()
     }
 
     override fun setIEntity(position: Int, e: E, type: Int, view: View?): Boolean {
-        return adapter.value?.setIEntity(position, e, type, view)?:false
+        return adapter.setIEntity(position, e, type, view)
     }
 
     override fun set(position: Int, es: List<E>): Boolean {
-        return adapter.value?.set(position, es)?:false
+        return adapter.set(position, es)
     }
 }

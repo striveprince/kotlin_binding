@@ -14,7 +14,7 @@ abstract class ListDiffViewModel<Owner : LifecycleOwner, E : DiffInflate> : List
     var diff: Job? = null
     override fun refreshList(position: Int, es: List<E>): Boolean {
         diff = CoroutineScope(Dispatchers.Default).launch {
-            val result = DiffUtil.calculateDiff(DiffUtilCallback(adapter.value!!.adapterList, es))
+            val result = DiffUtil.calculateDiff(DiffUtilCallback(adapter.adapterList, es))
             launch(Dispatchers.Main) {
                 result.dispatchUpdatesTo(adapter as ListUpdateCallback)
                 loading.value = false

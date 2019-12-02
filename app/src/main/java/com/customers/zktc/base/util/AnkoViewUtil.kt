@@ -52,10 +52,10 @@ fun recycler(
 
 fun recycler(
     context: Context,
-    recyclerAdapter: RecyclerView.Adapter<*> = RecyclerAdapter<Inflate>(),
+    listViewModel: ListViewModel<*,*>,
+    recyclerAdapter: RecyclerView.Adapter<*> = listViewModel.adapter as RecyclerView.Adapter<*>,
     recyclerManager: RecyclerView.LayoutManager = LinearLayoutManager(context),
-    recyclerAnimator: RecyclerView.ItemAnimator? = DefaultItemAnimator(),
-    listViewModel: ListViewModel<*,*>
+    recyclerAnimator: RecyclerView.ItemAnimator? = DefaultItemAnimator()
 ) =recycler(context, recyclerAdapter, recyclerManager, recyclerAnimator) { position, state->
     if(listViewModel.loading.value!!){
         listViewModel.position = position
