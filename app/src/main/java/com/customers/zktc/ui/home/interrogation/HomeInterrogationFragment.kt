@@ -10,6 +10,6 @@ import org.jetbrains.anko.AnkoContext
 class HomeInterrogationFragment:AnkoFragment<HomeInterrogationModel>() {
 
     override fun parse(t: HomeInterrogationModel, context: Context): AnkoContext<Context> {
-        return recycler(context,listViewModel= t)
+        return recycler(context,t)
     }
 }
