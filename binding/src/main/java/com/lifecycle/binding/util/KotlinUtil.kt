@@ -149,7 +149,7 @@ fun toast(message: String) {
 fun installApkFile(
     context: Context,
     file: File,
-    fileProvider: String = "com.customers.zktc.fileProvider"
+    fileProvider: String = "com.eWord.inquiry.fileProvider"
 ) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
