@@ -1,4 +1,4 @@
-package com.customers.zktc.base.life.viewmodel.list
+package com.lifecycle.binding.inter.viewmodel.list
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-abstract class ListDiffViewModel<Owner : LifecycleOwner, E : DiffInflate> : ListViewModel<Owner, E>() {
+abstract class ListDiffViewModel<Owner : LifecycleOwner, E : DiffInflate,Api> : ListViewModel<Owner, E,Api>() {
     var diff: Job? = null
     override fun refreshList(position: Int, es: List<E>): Boolean {
         diff = CoroutineScope(Dispatchers.Default).launch {

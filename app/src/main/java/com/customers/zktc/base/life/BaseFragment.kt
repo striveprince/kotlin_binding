@@ -10,7 +10,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.launcher.ARouter
-import com.customers.zktc.base.life.viewmodel.BaseViewModel
 import com.customers.zktc.inject.component.FragmentComponent
 import com.customers.zktc.inject.data.Api
 import com.customers.zktc.inject.module.FragmentModule

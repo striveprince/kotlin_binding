@@ -5,7 +5,7 @@ import android.view.ViewManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.customers.zktc.base.life.viewmodel.list.ListViewModel
+import com.lifecycle.binding.inter.viewmodel.list.ListViewModel
 import com.lifecycle.binding.adapter.AdapterType
 import com.lifecycle.binding.adapter.recycler.RecyclerAdapter
 import com.lifecycle.binding.inter.inflate.Inflate
@@ -51,7 +51,7 @@ fun recycler(
 
 fun recycler(
     context: Context,
-    listViewModel: ListViewModel<*,*>,
+    listViewModel: ListViewModel<*, *>,
     recyclerAdapter: RecyclerView.Adapter<*> = listViewModel.adapter as RecyclerView.Adapter<*>,
     recyclerManager: RecyclerView.LayoutManager = LinearLayoutManager(context),
     recyclerAnimator: RecyclerView.ItemAnimator? = DefaultItemAnimator()

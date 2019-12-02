@@ -1,11 +1,10 @@
-package com.customers.zktc.base.life.viewmodel.list
+package com.lifecycle.binding.inter.viewmodel.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.customers.zktc.base.life.viewmodel.LifeViewModel
-import com.customers.zktc.inject.data.Api
+import com.lifecycle.binding.inter.viewmodel.LifeViewModel
 import com.lifecycle.binding.adapter.AdapterType
 import com.lifecycle.binding.adapter.IEvent
 import com.lifecycle.binding.adapter.IListAdapter
@@ -15,7 +14,7 @@ import com.lifecycle.binding.util.observer
 import io.reactivex.Observable
 import io.reactivex.Single
 
-abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate>(val adapter: IListAdapter<E> =RecyclerAdapter()) : LifeViewModel<Owner>(), IListAdapter<E> {
+abstract class ListViewModel<Owner : LifecycleOwner, E : Inflate,Api>(val adapter: IListAdapter<E> =RecyclerAdapter()) : LifeViewModel<Owner,Api>(), IListAdapter<E> {
     var state = AdapterType.no
     var position = 0
     val loading  = MutableLiveData<Boolean>(false)

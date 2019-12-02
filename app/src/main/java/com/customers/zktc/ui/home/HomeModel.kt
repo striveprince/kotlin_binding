@@ -1,7 +1,6 @@
 package com.customers.zktc.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import com.customers.zktc.base.life.viewmodel.BaseViewModel
 import com.google.android.material.tabs.TabLayout
 
 /**
